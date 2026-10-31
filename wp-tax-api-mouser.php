@@ -2,8 +2,8 @@
 
 /**
  * Plugin Name:       Taxmod Mouser
- * Description:       Reads Mouser order mails from the mailbox of Taxmod Mail and hands them to the inbox of the Taxonomy Modeller.
- * Version:           0.0.1
+ * Description:       Mouser for the Taxonomy Modeller: reads order mails from Taxmod Mail and searches parts over the Mouser API for the purchasing page.
+ * Version:           0.1.0
  * Requires at least: 6.9
  * Requires PHP:      8.2
  * Author:            Stefan Fambach (SteFam), Claude (Anthropic AI)

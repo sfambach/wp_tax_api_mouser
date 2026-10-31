@@ -2,8 +2,15 @@
 
 Mouser connection for the [Taxonomy Modeller](https://github.com/sfambach/wp-taxonomy-modeler) (WordPress plugin).
 
-**Status 0.0.1 (needs modeller 0.1.81 and [Taxmod Mail](https://github.com/sfambach/wp_tax_mail) 0.6.0 or later):
-reads order confirmations, shipment notices and cancellations from the mailbox of Taxmod Mail and hands them to the modeller's inbox. Mouser also has an order history API; it is not connected yet.**
+**Status 0.1.0 (needs modeller 0.1.81 and [Taxmod Mail](https://github.com/sfambach/wp_tax_mail) 0.6.0 or later):**
+
+- **Mail:** reads order confirmations, shipment notices and cancellations from the mailbox of Taxmod Mail and hands them to the modeller's inbox.
+- **Search API** (D-1027 E6): with the API key from My Mouser › APIs (tab «Mouser», stored encrypted in the modeller's vault,
+  or `TAXMOUSER_API_KEY` in wp-config.php) the purchasing page «Einkauf» of
+  [Taxmod Stock](https://github.com/sfambach/wp_tax_stock) 0.4.2+ shows Mouser offers per position — Mouser number, maker,
+  stock, the price of the break the quantity reaches — through the filter `taxmod_supplier_offers`. A search is kept for
+  an hour. The tab has a test search.
+- **Not yet:** cart and order history (same key, waiting for Mouser to unlock them).
 
 Every shop connection is a module of its own, whether it reads mails or an API; Taxmod Mail only fetches and files
 the mails (D-1006, [concept](https://github.com/sfambach/wp-taxonomy-modeler/blob/main/docs/pakete/import/module-schnitt.md)).
@@ -13,6 +20,7 @@ The reader moved here from Taxmod Mail unchanged.
 
 1. Install and set up Taxmod Mail (mailbox access).
 2. Activate this module. *Taxonomy Modeller → Configuration → Mouser* shows under «Mail» which mails it reads.
+3. For the search, enter the API key under «API» there and try the test search.
 
 ## Development
 
