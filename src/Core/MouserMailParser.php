@@ -4,7 +4,7 @@ namespace TaxApiMouser\Core;
 
 use Taxmod\Core\Import\Mail\MailMessage;
 use Taxmod\Core\Import\Mail\LineCollector;
-use Taxmod\Core\Import\Mail\OrderMailParser;
+use Taxmod\Core\Import\Mail\ShopMailParser;
 use Taxmod\Core\Import\Mail\Text;
 use Taxmod\Core\Import\OrderProposal;
 use Taxmod\Core\Import\ProposalKind;
@@ -15,25 +15,17 @@ use Taxmod\Core\Import\ProposalKind;
  *
  * @see https://github.com/sfambach/wp-taxonomy-modeler/blob/main/docs/pakete/import/module-schnitt.md
  */
-final class MouserMailParser implements OrderMailParser
+final class MouserMailParser extends ShopMailParser
 {
-    public function __construct(private readonly string $version)
-    {
-    }
 
     private const PART = '/^\d{2,3}-[A-Z0-9][A-Z0-9\-.\/+#]*$/';
     private const DATE = '/^[A-Z]{3} \d{1,2}, \d{4}$/';
     private const SUMS = [['Merchandise Total', 'sub'], ['Warenwert', 'sub'], ['Gesamtwarenwert', 'sub'], ['Shipping', 'ship'],
         ['Versand', 'ship'], ['VAT', 'vat'], ['MwSt', 'vat'], ['Mehrwertsteuer', 'vat']];
 
-    public function key(): string
+    public function __construct(string $version)
     {
-        return 'mouser';
-    }
-
-    public function shopName(): string
-    {
-        return 'Mouser';
+        parent::__construct('mouser', 'Mouser', [ProposalKind::Ordered, ProposalKind::Shipped, ProposalKind::Cancelled], [], $version);
     }
 
     public function recognises(MailMessage $mail): bool
@@ -110,13 +102,4 @@ final class MouserMailParser implements OrderMailParser
             $kind === ProposalKind::Shipped ? $mail->date?->format('Y-m-d') : null, $tracking === null ? [] : [$tracking]);
     }
 
-    public function kinds(): array
-    {
-        return [ProposalKind::Ordered, ProposalKind::Shipped, ProposalKind::Cancelled];
-    }
-
-    public function version(): string
-    {
-        return $this->version;
-    }
 }

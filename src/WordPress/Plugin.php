@@ -4,7 +4,7 @@ namespace TaxApiMouser\WordPress;
 
 use TaxApiMouser\Core\MouserApiError;
 use TaxApiMouser\Core\MouserMailParser;
-use Taxmod\Core\Import\Mail\OrderMailParser;
+use Taxmod\Core\Import\Mail\ShopMailParser;
 
 /**
  * The boundary: registers the Mouser mail reader with Taxmod Mail (filter `taxmail_parsers`), a tab on the modeller's
@@ -15,7 +15,7 @@ use Taxmod\Core\Import\Mail\OrderMailParser;
  */
 final class Plugin
 {
-    public const VERSION = '0.1.0';
+    public const VERSION = '0.1.1';
     public const TAB     = 'mouser';
 
     public static function boot(): void
@@ -23,10 +23,10 @@ final class Plugin
         add_action('plugins_loaded', static function (): void {
             load_plugin_textdomain('taxapimouser', false, dirname(plugin_basename(dirname(__DIR__, 2) . '/wp-tax-api-mouser.php')) . '/languages');
 
-            // The contract lives in the modeller (0.1.81 or later); without it there is nothing to register with.
-            if (! interface_exists(OrderMailParser::class)) {
+            // The contract lives in the modeller (0.2.120 or later); without it there is nothing to register with.
+            if (! class_exists(ShopMailParser::class)) {
                 add_action('admin_notices', static fn () => print '<div class="notice notice-warning"><p><strong>Taxmod Mouser:</strong> '
-                    . esc_html__('needs the Taxonomy Modeller 0.1.81 or later and Taxmod Mail 0.6.0 or later.', 'taxapimouser') . '</p></div>');
+                    . esc_html__('needs the Taxonomy Modeller 0.2.120 or later and Taxmod Mail 0.6.0 or later.', 'taxapimouser') . '</p></div>');
 
                 return;
             }

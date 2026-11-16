@@ -2,7 +2,7 @@
 
 Mouser connection for the [Taxonomy Modeller](https://github.com/sfambach/wp-taxonomy-modeler) (WordPress plugin).
 
-**Status 0.1.0 (needs modeller 0.1.81 and [Taxmod Mail](https://github.com/sfambach/wp_tax_mail) 0.6.0 or later):**
+**Status 0.1.1 (needs modeller 0.2.120 and [Taxmod Mail](https://github.com/sfambach/wp_tax_mail) 0.6.0 or later):**
 
 - **Mail:** reads order confirmations, shipment notices and cancellations from the mailbox of Taxmod Mail and hands them to the modeller's inbox.
 - **Search API** (D-1027 E6): with the API key from My Mouser › APIs (tab «Mouser», stored encrypted in the modeller's vault,
