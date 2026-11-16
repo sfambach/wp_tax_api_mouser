@@ -78,10 +78,6 @@ final class Plugin
         $key  = new StoredKey();
         $html = '<h3>' . esc_html__('API', 'taxapimouser') . '</h3>';
 
-        if (! StoredKey::vaultAvailable() && ! $key->fromConstant()) {
-            return $html . '<p>' . esc_html__('Needs the vault of the Taxonomy Modeller (0.1.31 or later), or the constant TAXMOUSER_API_KEY in wp-config.php.', 'taxapimouser') . '</p>';
-        }
-
         if ($key->broken()) {
             $html .= '<div class="notice notice-warning inline"><p>' . esc_html__('The stored key no longer opens — the salts in wp-config.php changed. Enter it again.', 'taxapimouser') . '</p></div>';
         }
