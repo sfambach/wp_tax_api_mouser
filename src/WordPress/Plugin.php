@@ -16,7 +16,7 @@ use Taxmod\Core\Import\Mail\ShopMailParser;
  */
 final class Plugin
 {
-    public const VERSION = '0.1.2';
+    public const VERSION = '0.1.3';
     public const TAB     = 'mouser';
 
     public static function boot(): void
@@ -24,11 +24,11 @@ final class Plugin
         add_action('plugins_loaded', static function (): void {
             load_plugin_textdomain('taxapimouser', false, dirname(plugin_basename(dirname(__DIR__, 2) . '/wp-tax-api-mouser.php')) . '/languages');
 
-            // The contract lives in the modeller (0.2.173 or later); without it there is nothing to register with.
-            // D-1501: the settings tab draws its fields with ListPage::field, which the modeller has from 0.2.173 on.
-            if (! class_exists(ShopMailParser::class) || ! class_exists(\Taxmod\WordPress\Plugin::class, false) || version_compare(\Taxmod\WordPress\Plugin::VERSION, '0.2.173', '<')) {
+            // The contract lives in the modeller (0.2.174 or later); without it there is nothing to register with.
+            // D-1501: the settings tab draws its fields with ListPage::field, which the modeller has from 0.2.174 on.
+            if (! class_exists(ShopMailParser::class) || ! class_exists(\Taxmod\WordPress\Plugin::class, false) || version_compare(\Taxmod\WordPress\Plugin::VERSION, '0.2.174', '<')) {
                 add_action('admin_notices', static fn () => print '<div class="notice notice-warning"><p><strong>Taxmod Mouser:</strong> '
-                    . esc_html__('needs the Taxonomy Modeller 0.2.173 or later and Taxmod Mail 0.6.0 or later.', 'taxapimouser') . '</p></div>');
+                    . esc_html__('needs the Taxonomy Modeller 0.2.174 or later and Taxmod Mail 0.6.0 or later.', 'taxapimouser') . '</p></div>');
 
                 return;
             }
