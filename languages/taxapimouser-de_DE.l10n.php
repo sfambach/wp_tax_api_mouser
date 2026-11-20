@@ -28,7 +28,7 @@ return [
         'The key comes from TAXMOUSER_API_KEY in wp-config.php.'                         => 'Der Schlüssel kommt aus TAXMOUSER_API_KEY in wp-config.php.',
         'The stored key no longer opens — the salts in wp-config.php changed. Enter it again.' => 'Der gespeicherte Schlüssel lässt sich nicht mehr öffnen — die Salts in wp-config.php haben sich geändert. Bitte neu eingeben.',
         'needs the Taxonomy Modeller 0.1.81 or later and Taxmod Mail 0.6.0 or later.'    => 'braucht den Taxonomy Modeller 0.1.81 und Taxmod Mail 0.6.0 oder neuer.',
-        'needs the Taxonomy Modeller 0.2.120 or later and Taxmod Mail 0.6.0 or later.'   => 'braucht den Taxonomy Modeller ab 0.2.120 und Taxmod Mail ab 0.6.0.',
+        'needs the Taxonomy Modeller 0.2.174 or later and Taxmod Mail 0.6.0 or later.'   => 'braucht den Taxonomy Modeller ab 0.2.174 und Taxmod Mail ab 0.6.0.',
         'run "composer install" in the plugin folder — the autoloader is missing.'       => 'im Plugin-Ordner «composer install» ausführen — der Autoloader fehlt.',
         'stored — leave empty to keep it'                                                => 'gespeichert — leer lassen, um ihn zu behalten',
     ],
