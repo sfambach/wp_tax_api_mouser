@@ -1,8 +1,35 @@
-<?php
-// German translation of Taxmod Mouser (WordPress .l10n.php format, WP 6.5+).
-return ['domain' => 'taxapimouser', 'language' => 'de_DE', 'messages' => [
-    'run "composer install" in the plugin folder — the autoloader is missing.' => 'im Plugin-Ordner «composer install» ausführen — der Autoloader fehlt.',
-    'needs the Taxonomy Modeller 0.1.81 or later and Taxmod Mail 0.6.0 or later.' => 'braucht den Taxonomy Modeller 0.1.81 und Taxmod Mail 0.6.0 oder neuer.',
-    'Let Mouser send its order mails to the mailbox of Taxmod Mail (or forward them there).' => 'Mouser die Bestellmails an das Postfach von Taxmod Mail schicken lassen (oder dorthin weiterleiten).',
-    'Keep this module active: Taxmod Mail hands every Mouser mail to it, and the proposals appear in the Inbox.' => 'Dieses Modul aktiv lassen: Taxmod Mail gibt ihm jede Mouser-Mail, die Vorschläge erscheinen in der Inbox.',
-]];
+<?php declare(strict_types=1);
+
+// German texts of the user-visible software strings (D-1488 began with the choosers; all screens since D-1500).
+return [
+    'project-id-version' => 'Taxmod Mouser',
+    'language'           => 'de_DE',
+    'plural-forms'       => 'nplurals=2; plural=(n != 1);',
+    'messages'           => [
+        'API'                                                                            => 'API',
+        'API key'                                                                        => 'API-Schlüssel',
+        'Delete the stored key'                                                          => 'Gespeicherten Schlüssel löschen',
+        'Description'                                                                    => 'Beschreibung',
+        'For the search: enter the API key from My Mouser › APIs under «API»; the purchasing page of Taxmod Stock then shows Mouser offers per position. Cart and order history follow.' => 'Für die Suche: den API-Schlüssel aus My Mouser › APIs unter «API» eintragen; die Einkaufsseite von Taxmod Stock zeigt dann Mouser-Angebote je Position. Warenkorb und Bestellverlauf folgen.',
+        'From My Mouser › APIs. It is stored encrypted. Mouser uses the same key for search, cart and order history once they are unlocked.' => 'Aus My Mouser › APIs. Er wird verschlüsselt gespeichert. Mouser nutzt denselben Schlüssel für Suche, Warenkorb und Bestellverlauf, sobald sie freigeschaltet sind.',
+        'In stock'                                                                       => 'Auf Lager',
+        'Keep this module active: Taxmod Mail hands every Mouser mail to it, and the proposals appear in the Inbox.' => 'Dieses Modul aktiv lassen: Taxmod Mail gibt ihm jede Mouser-Mail, die Vorschläge erscheinen in der Inbox.',
+        'Let Mouser send its order mails to the mailbox of Taxmod Mail (or forward them there).' => 'Mouser die Bestellmails an das Postfach von Taxmod Mail schicken lassen (oder dorthin weiterleiten).',
+        'Maker'                                                                          => 'Hersteller',
+        'Mouser no.'                                                                     => 'Mouser-Nr.',
+        'Mouser not reachable: %s'                                                       => 'Mouser nicht erreichbar: %s',
+        'Mouser refused: %s'                                                             => 'Mouser hat abgelehnt: %s',
+        'No Mouser API key stored.'                                                      => 'Kein Mouser-API-Schlüssel gespeichert.',
+        'Nothing found.'                                                                 => 'Nichts gefunden.',
+        'Nothing to search for.'                                                         => 'Nichts zu suchen.',
+        'Price (1 pc)'                                                                   => 'Preis (1 Stk.)',
+        'Search'                                                                         => 'Suchen',
+        'Test search'                                                                    => 'Testsuche',
+        'The key comes from TAXMOUSER_API_KEY in wp-config.php.'                         => 'Der Schlüssel kommt aus TAXMOUSER_API_KEY in wp-config.php.',
+        'The stored key no longer opens — the salts in wp-config.php changed. Enter it again.' => 'Der gespeicherte Schlüssel lässt sich nicht mehr öffnen — die Salts in wp-config.php haben sich geändert. Bitte neu eingeben.',
+        'needs the Taxonomy Modeller 0.1.81 or later and Taxmod Mail 0.6.0 or later.'    => 'braucht den Taxonomy Modeller 0.1.81 und Taxmod Mail 0.6.0 oder neuer.',
+        'needs the Taxonomy Modeller 0.2.120 or later and Taxmod Mail 0.6.0 or later.'   => 'braucht den Taxonomy Modeller ab 0.2.120 und Taxmod Mail ab 0.6.0.',
+        'run "composer install" in the plugin folder — the autoloader is missing.'       => 'im Plugin-Ordner «composer install» ausführen — der Autoloader fehlt.',
+        'stored — leave empty to keep it'                                                => 'gespeichert — leer lassen, um ihn zu behalten',
+    ],
+];

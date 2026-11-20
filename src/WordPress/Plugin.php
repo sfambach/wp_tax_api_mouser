@@ -15,7 +15,7 @@ use Taxmod\Core\Import\Mail\ShopMailParser;
  */
 final class Plugin
 {
-    public const VERSION = '0.1.1';
+    public const VERSION = '0.1.2';
     public const TAB     = 'mouser';
 
     public static function boot(): void
