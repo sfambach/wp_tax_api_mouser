@@ -2,6 +2,7 @@
 
 namespace TaxApiMouser\WordPress;
 
+use Taxmod\Core\Description\InputKind;
 use TaxApiMouser\Core\MouserApiError;
 use TaxApiMouser\Core\MouserMailParser;
 use Taxmod\Core\Import\Mail\ShopMailParser;
@@ -23,10 +24,11 @@ final class Plugin
         add_action('plugins_loaded', static function (): void {
             load_plugin_textdomain('taxapimouser', false, dirname(plugin_basename(dirname(__DIR__, 2) . '/wp-tax-api-mouser.php')) . '/languages');
 
-            // The contract lives in the modeller (0.2.120 or later); without it there is nothing to register with.
-            if (! class_exists(ShopMailParser::class)) {
+            // The contract lives in the modeller (0.2.173 or later); without it there is nothing to register with.
+            // D-1501: the settings tab draws its fields with ListPage::field, which the modeller has from 0.2.173 on.
+            if (! class_exists(ShopMailParser::class) || ! class_exists(\Taxmod\WordPress\Plugin::class, false) || version_compare(\Taxmod\WordPress\Plugin::VERSION, '0.2.173', '<')) {
                 add_action('admin_notices', static fn () => print '<div class="notice notice-warning"><p><strong>Taxmod Mouser:</strong> '
-                    . esc_html__('needs the Taxonomy Modeller 0.2.120 or later and Taxmod Mail 0.6.0 or later.', 'taxapimouser') . '</p></div>');
+                    . esc_html__('needs the Taxonomy Modeller 0.2.173 or later and Taxmod Mail 0.6.0 or later.', 'taxapimouser') . '</p></div>');
 
                 return;
             }
@@ -85,14 +87,13 @@ final class Plugin
         $html .= $key->fromConstant()
             ? '<p>' . esc_html__('The key comes from TAXMOUSER_API_KEY in wp-config.php.', 'taxapimouser') . '</p>'
             : '<table class="form-table" role="presentation"><tbody><tr><th scope="row"><label for="taxapimouser_key">' . esc_html__('API key', 'taxapimouser') . '</label></th><td>'
-                . '<input type="password" class="regular-text" id="taxapimouser_key" name="taxapimouser_key" autocomplete="off" placeholder="'
-                . esc_attr($key->isStored() ? __('stored — leave empty to keep it', 'taxapimouser') : '') . '">'
+                . ListPage::field(InputKind::Secret, 'taxapimouser_key', '', ['id' => 'taxapimouser_key', 'size' => 40, 'placeholder' => $key->isStored() ? __('stored — leave empty to keep it', 'taxapimouser') : ''])
                 . '<p class="description">' . esc_html__('From My Mouser › APIs. It is stored encrypted. Mouser uses the same key for search, cart and order history once they are unlocked.', 'taxapimouser') . '</p>'
-                . ($key->isStored() ? '<p><label><input type="checkbox" name="taxapimouser_forget" value="1"> ' . esc_html__('Delete the stored key', 'taxapimouser') . '</label></p>' : '')
+                . ($key->isStored() ? '<p><label>' . ListPage::field(InputKind::Flag, 'taxapimouser_forget') . ' ' . esc_html__('Delete the stored key', 'taxapimouser') . '</label></p>' : '')
                 . '</td></tr></tbody></table>';
 
         $query = isset($_GET['taxapimouser_test']) ? sanitize_text_field(wp_unslash((string) $_GET['taxapimouser_test'])) : '';
-        $html .= '<h3>' . esc_html__('Test search', 'taxapimouser') . '</h3><p><input type="search" id="taxapimouser_test" value="' . esc_attr($query) . '" placeholder="BC547C"> '
+        $html .= '<h3>' . esc_html__('Test search', 'taxapimouser') . '</h3><p>' . ListPage::field(InputKind::Line, '', $query, ['id' => 'taxapimouser_test', 'placeholder' => 'BC547C']) . ' '
             . '<button type="button" class="button" onclick="var q=document.getElementById(\'taxapimouser_test\').value;var u=new URL(location.href);u.searchParams.set(\'taxapimouser_test\',q);location.href=u">' . esc_html__('Search', 'taxapimouser') . '</button></p>';
 
         if ($query === '' || $key->key() === null) {
