@@ -3,6 +3,7 @@
 namespace TaxApiMouser\WordPress;
 
 use Taxmod\Core\Description\InputKind;
+use Taxmod\WordPress\Admin\ListPage;
 use TaxApiMouser\Core\MouserApiError;
 use TaxApiMouser\Core\MouserMailParser;
 use Taxmod\Core\Import\Mail\ShopMailParser;
@@ -16,7 +17,7 @@ use Taxmod\Core\Import\Mail\ShopMailParser;
  */
 final class Plugin
 {
-    public const VERSION = '0.1.3';
+    public const VERSION = '0.1.4';
     public const TAB     = 'mouser';
 
     public static function boot(): void
